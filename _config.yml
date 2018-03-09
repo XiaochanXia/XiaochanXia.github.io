@@ -1,3 +1,9 @@
 ---
-title: Monkey's Blog
+source: .
+destination: ./_site
+layout: ./_layouts
+title: Monkey's Namespace
+categories: blog,movie,travel
+tags: tech,movie,travel,photo,book,
+email: xiaochan.xia@qq.com
 ---
