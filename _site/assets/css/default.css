@@ -24,19 +24,23 @@
     font-style: italic
 }
 
-html {
+html,body {
     margin: 0 auto;
     padding: 0;
+    height: 100%;
 }
 
-body {
+.wrapper {
     font-size: 100%;
     line-height: 120%;
     background-color: #fff;
     font-family: MJXc-TeX;
-    max-width: 860px;
+    max-width: 960px;
     text-align: left;
     margin: 0 auto;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #blog-title a {
@@ -49,7 +53,7 @@ body {
     text-decoration-line: none;
 }
 
-nav {
+.wrapper nav {
     margin: 20px 0 0 0;
     text-align: left;
     border-top: 1px solid #ccc;
@@ -57,47 +61,30 @@ nav {
     padding-right: 20px;
 }
 
-nav ul {
+.wrapper nav ul {
     list-style: none;
     margin: 20px 0 0 0;
     padding: 0;
 }
 
-nav ul li {
+.wrapper nav ul li {
     display: inline-block;
     margin: 0 10px 0 0;
     padding: 3px 0 3px 0;
     line-height: 1.5em;
 }
 
-nav li a {
+.wrapper nav li a {
     text-decoration-line: none;
     border: 0;
     color: #000;
     cursor: pointer;
 }
 
-article h1 {
-    border-bottom: 1px solid #000;
-    font-size: 2em;
-}
-
 a {
     text-decoration-line: none;
     border-bottom: 1px black dotted;
     color: #000;
-}
-
-tr {
-    display: table-row;
-}
-
-table {
-    width: 100%;
-}
-
-td {
-    display: table-cell;
 }
 
 .right {
@@ -107,14 +94,29 @@ td {
 
 article {
     margin-bottom: 2em;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+}
+
+article ul li a{
+    display: inline-block;
+}
+
+article ul li time {
+    display: block;
+    float: right;
+}
+
+article h1 {
+    border-bottom: 1px solid #000;
+    font-size: 2em;
 }
 
 footer {
-    margin: 0.5em 20px 0 20px;
+    width: 100%;
+    margin: 0 auto;
     border-top: 3px double #ccc;
-    padding: 1em 0 0 0;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 70%;
     color: #999;
     bottom: 0;

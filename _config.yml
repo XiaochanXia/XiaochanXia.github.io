@@ -1,9 +1,15 @@
----
+title: Monkey's Namespace
 source: .
 destination: ./_site
 layout: ./_layouts
-title: Monkey's Namespace
 categories: blog,movie,travel
 tags: tech,movie,travel,photo,book,
 email: xiaochan.xia@qq.com
----
+baseUrl: ""
+
+
+#Markdown settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
