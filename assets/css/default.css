@@ -95,7 +95,7 @@ a {
 article {
     margin-bottom: 2em;
     padding-left: 10px;
-    min-height: cala(100vh - 30px);
+    min-height: calc(100vh - 30px);
 }
 
 article ul li a{

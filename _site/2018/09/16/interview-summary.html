@@ -1,74 +1,200 @@
-<p>最近面试了很多家互联网公司，包括阿里， 拼多多，七牛云（挂了），今日头条（止步一面，丢脸），平安
-面试题分为几个方面的问题：</p>
-<h4 id="1-js方面核心频率最高">1. JS方面（核心，频率最高）</h4>
-<p>##### a. bind函数怎么实现？</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myBind</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nb">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nb">self</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">)));</span>
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="wrapper">
+        <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Xiaochan Xia">
+    <title> 最近面试总结 </title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+    <!-- Default styles -->
+    <link href="/assets/css/default.css" rel="stylesheet" type="text/css">
+</head>
+        <header>
+  <div id="blog-title">
+    <a href="/">Monkey's Namespace</a>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li>
+      <a href="/index.html">Home</a>
+    </li>
+    <li>
+      <a href="/tech/">Tech</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/cv/">CV</a>
+    </li>
+    <li>
+      <a href="/life/">Life</a>
+    </li>
+    <li>
+      <a href="/book/">Book</a>
+    </li>
+  </ul>
+</nav> 
+        <link href="/assets/css/post.css"  rel="stylesheet"/>
+<h1>最近面试总结</h1>
+<div class="content"> <h5 id="最近面试了很多家互联网公司包括阿里-拼多多七牛云挂了今日头条止步一面丢脸平安">最近面试了很多家互联网公司，包括阿里， 拼多多，七牛云（挂了），今日头条（止步一面，丢脸），平安</h5>
+<hr />
+<p>面试题分为几个方面的问题：</p>
+<h2 id="1-js方面核心频率最高">1. JS方面（核心，频率最高）</h2>
+<h3 id="a-bind函数怎么实现">a. bind函数怎么实现？</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myBind</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nb">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">)));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="b-说一说js闭包">b. 说一说js闭包。</h3>
+<p>JS闭包其实就是在函数中返回函数，返回的函数引用其上层函数的变量，使引用的变量不能被释放。</p>
+<h3 id="c-将a-1-b-2-转为-a-1-b-2">c. 将{a: 1, b: 2} 转为： [[‘a’, 1], [‘b’, 2]]</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">traslate</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span> <span class="o">!==</span> <span class="s1">'object'</span> <span class="o">||</span> <span class="nx">obj</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// Object.keys()只获取对象的自有属性</span>
+  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">key</span><span class="p">,</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]]);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="d-遍历对象属性有哪些方法">d. 遍历对象属性有哪些方法？</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// 第一种，for in， 如果只需要获取obj的自有属性，需要用obj.hasOwenProperty()过滤掉。</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">prop</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">prop</span><span class="p">,</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">prop</span><span class="p">]]);</span>
     <span class="p">}</span>
   <span class="p">}</span>
+<span class="c1">// 第二种就是 Object.keys()</span>
 </code></pre></div></div>
-<p>###### b. 说一说js闭包。
-  ###### c. 将{a: 1, b: 2} 转为： [[‘a’, 1], [‘b’, 2]]
-  ###### d. 遍历对象属性有哪些方法？
-  ###### e. Object.keys()能拿到对象的原型链的属性吗？
-  ###### f. new操作符的原理，写一个自己的new方法实现js的new操作符。
-  ###### g. 如何实现apply方法？
-  ###### h. 以下输出是什么？
-    <code class="highlighter-rouge">javascript
-      for(var i=0;i&lt;5;i++){
-          setTimeout(function(){
-              console.log(i);
-          });
-      }
-   </code>
-  ###### i. 如何实现以上代码的正确输出？（闭包，let）
-  ###### j. 如果要0秒打印0，1秒打印1，2秒打印2，直到第100秒打印100，写出代码。
-  ###### k. 使用promise实现上一题的需求。
-  ###### l. 实现一个链式调用， a().b().c();
-  ###### m. 实现a, b, c三者的任意调用， a().b().c(), b().a().c(), c().a().b()等
-  ###### n. var year = 2017;
-    var month = 7;
-    var day = 12;
-    实现 render(‘${year}-${month}-${day}’)
-  ###### o. 现在render是任意模版，render(‘今天是${year}年${month}月${day}日’)，怎么实现？
-  ###### p. 实现一个自己的Object.create()方法
-  ###### q. 数组去重，O(n)的算法复杂度
-  ###### r. Set怎么做到代码去重的？
-  ###### s. Promise.all()的实现方法
-  ###### t. js中的class和prototype有什么不一样？</p>
+<h3 id="e-objectkeys能拿到对象的原型链的属性吗">e. Object.keys()能拿到对象的原型链的属性吗？</h3>
+<p>不能，Object.keys()只能拿到对象的自有属性，不能拿到对象的原型链上的属性</p>
+<h3 id="f-new操作符的原理写一个自己的new方法实现js的new操作符">f. new操作符的原理，写一个自己的new方法实现js的new操作符。</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myNew</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
+  <span class="kd">const</span> <span class="kd">constructor</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="kd">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="g-如何实现apply方法">g. 如何实现apply方法？</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myApply</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="k">delete</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fn</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<h4 id="2-css方面">2. css方面</h4>
-<p>###### a. css的rem和em有什么不一样。
-  ###### b. css中选择器的优先级
-  ###### c. position的细节
-  ###### d. 怎么实现元素的垂直居中
-  ###### e. css的盒子模型
-  ###### f. css中背景延伸问题</p>
+</code></pre></div></div>
+<h3 id="h-以下输出是什么">h. 以下输出是什么？</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+<span class="c1">// 循环完之后一次性打印5个5；</span>
+</code></pre></div></div>
+<h3 id="i-如何实现以上代码的正确输出闭包let">i. 如何实现以上代码的正确输出？（闭包，let）</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// es6的let， 因为let只在for循环中有效，每次i都相当于数字1，2，3...的一份拷贝</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
 
-<h4 id="3-bom方面">3. BOM方面</h4>
-<p>###### a. js中操作dom的一些api（增删改查）</p>
+<span class="c1">// 闭包</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">j</span><span class="p">);</span>
+        <span class="p">})</span>
+      <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<h3 id="j-如果要0秒打印01秒打印12秒打印2直到第100秒打印100写出代码">j. 如果要0秒打印0，1秒打印1，2秒打印2，直到第100秒打印100，写出代码。</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">j</span><span class="p">);</span>
+        <span class="p">})</span>
+      <span class="p">})(</span><span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<h3 id="k-使用promise实现上一题的需求">k. 使用promise实现上一题的需求。</h3>
+<h3 id="l-实现一个链式调用-abc">l. 实现一个链式调用， a().b().c();</h3>
+<h3 id="m-实现a-b-c三者的任意调用-abc-bac-cab等">m. 实现a, b, c三者的任意调用， a().b().c(), b().a().c(), c().a().b()等</h3>
+<h3 id="n-var-year--2017">n. var year = 2017;</h3>
+<p>var month = 7;
+var day = 12;
+实现 render(‘${year}-${month}-${day}’)</p>
+<h3 id="o-现在render是任意模版render今天是year年month月day日怎么实现">o. 现在render是任意模版，render(‘今天是${year}年${month}月${day}日’)，怎么实现？</h3>
+<h3 id="p-实现一个自己的objectcreate方法">p. 实现一个自己的Object.create()方法</h3>
+<h3 id="q-数组去重on的算法复杂度">q. 数组去重，O(n)的算法复杂度</h3>
+<h3 id="r-set怎么做到代码去重的">r. Set怎么做到代码去重的？</h3>
+<h3 id="s-promiseall的实现方法">s. Promise.all()的实现方法</h3>
+<h3 id="t-js中的class和prototype有什么不一样">t. JS中的class和prototype有什么不一样？</h3>
 
-<h4 id="4-react框架方面">4. React框架方面</h4>
-<p>###### a. createStore方法怎么实现？
-  ###### b. store的结构是怎样的？
-  ###### c. 多页面结构中，怎么combine多个reducer和state？
-  ###### d. react的diff算法
-  ###### e. react中怎么做性能优化？</p>
+<h2 id="2-css方面">2. css方面</h2>
+<h3 id="a-css的rem和em有什么不一样">a. css的rem和em有什么不一样。</h3>
+<h3 id="b-css中选择器的优先级">b. css中选择器的优先级</h3>
+<h3 id="c-position的细节">c. position的细节</h3>
+<h3 id="d-怎么实现元素的垂直居中">d. 怎么实现元素的垂直居中</h3>
+<h3 id="e-css的盒子模型">e. css的盒子模型</h3>
+<h3 id="f-css中背景延伸问题">f. css中背景延伸问题</h3>
 
-<h4 id="5-算法和数据结构">5. 算法和数据结构</h4>
-<p>###### a. 冒泡排序和快速排序的思路和时间复杂度？
-  ###### b. 斜四十五度打印二维数组（z字型）
-  ###### c. typeahead多级列表（树结构）</p>
+<h3 id="3-bom方面">3. BOM方面</h3>
+<h3 id="a-js中操作dom的一些api增删改查">a. js中操作dom的一些api（增删改查）</h3>
 
-<h4 id="6-网络方面内容">6. 网络方面内容</h4>
-<p>###### a. 为什么会跨域？
-  ###### b. 跨域的几种方法？
-  ###### c. HTTP Request Header头的各种细节
-  ###### d. JSONP
-  ###### e. CORS
-  ###### f. 为什么服务器端可以不跨域呢？
-  ###### g. 什么是session
-  ###### h. cookie是什么？</p>
+<h2 id="4-react框架方面">4. React框架方面</h2>
+<h3 id="a-createstore方法怎么实现">a. createStore方法怎么实现？</h3>
+<h3 id="b-store的结构是怎样的">b. store的结构是怎样的？</h3>
+<h3 id="c-多页面结构中怎么combine多个reducer和state">c. 多页面结构中，怎么combine多个reducer和state？</h3>
+<h3 id="d-react的diff算法">d. react的diff算法</h3>
+<h3 id="e-react中怎么做性能优化">e. react中怎么做性能优化？</h3>
+
+<h2 id="5-算法和数据结构">5. 算法和数据结构</h2>
+<h3 id="a-冒泡排序和快速排序的思路和时间复杂度">a. 冒泡排序和快速排序的思路和时间复杂度？</h3>
+<h3 id="b-斜四十五度打印二维数组z字型">b. 斜四十五度打印二维数组（z字型）</h3>
+<h3 id="c-typeahead多级列表树结构">c. typeahead多级列表（树结构）</h3>
+
+<h2 id="6-网络方面内容">6. 网络方面内容</h2>
+<h3 id="a-为什么会跨域">a. 为什么会跨域？</h3>
+<p>因为浏览器的同源策略，浏览器不允许不是同一个源（不同的协议，不同的host，不同的端口）直接请求数据，目的是为了保护cookie不被其他网站盗取，为了安全问题。</p>
+<h3 id="b-跨域的几种方法">b. 跨域的几种方法？</h3>
+<p>JSONP
+CORS
+代理服务器</p>
+<h3 id="c-http-request-header头的各种细节">c. HTTP Request Header头的各种细节</h3>
+<h3 id="d-jsonp">d. JSONP</h3>
+<h3 id="e-cors">e. CORS</h3>
+<h3 id="f-为什么服务器端可以不跨域呢">f. 为什么服务器端可以不跨域呢？</h3>
+<p>因为服务器之间的数据请求交互没有限制</p>
+<h3 id="g-什么是session">g. 什么是session</h3>
+<h3 id="h-cookie是什么">h. cookie是什么？</h3>
+ </div> 
+        <footer>@2017 -
+    <script>
+        document.write(new Date().getFullYear())
+    </script> Xiaochan Xia. Licensed.
+</footer>
+    </div>
+</body>
+
+</html>
