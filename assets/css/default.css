@@ -95,6 +95,7 @@ a {
 article {
     margin-bottom: 2em;
     padding-left: 10px;
+    min-height: cala(100vh - 30px);
 }
 
 article ul li a{
@@ -119,6 +120,4 @@ footer {
     padding-right: 20px;
     font-size: 70%;
     color: #999;
-    bottom: 0;
-    position: fixed;
 }
